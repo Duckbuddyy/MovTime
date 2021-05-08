@@ -1,0 +1,12 @@
+// Application Configuration
+ext {
+    androidCompileSdkVersion = 30
+    androidTargetSdkVersion = 30
+    androidMinSdkVersion = 16
+
+    androidApplicationId = "com.duckbuddyy.movtime"
+    androidVersionName = "1.0"
+    androidVersionCode = 1
+
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+}
