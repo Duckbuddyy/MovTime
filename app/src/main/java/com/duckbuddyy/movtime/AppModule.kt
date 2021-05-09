@@ -2,6 +2,7 @@ package com.duckbuddyy.movtime
 
 import com.duckbuddyy.movtime.repository.MovieApi
 import com.duckbuddyy.movtime.repository.MovieRepository
+import com.duckbuddyy.movtime.viewmodel.DetailViewModel
 import com.duckbuddyy.movtime.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -19,5 +20,6 @@ val appModule = module {
     single { MovieRepository(get()) }
 
     viewModel { HomeViewModel(get()) }
+    viewModel { DetailViewModel(get()) }
 
 }

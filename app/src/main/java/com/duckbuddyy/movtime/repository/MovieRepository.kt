@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-class MovieRepository(private val movieApi: MovieApi) : ApiHandler() {
+class MovieRepository(private val movieApi: MovieApi) {
 
     suspend fun getPopular(page:Int = 1): Popular = withContext(Dispatchers.IO) {
         try {
