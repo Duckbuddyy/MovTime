@@ -8,6 +8,9 @@ android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
     defaultConfig {
+        //This line gets api key from gradle.properties
+        buildConfigField("String", "API_KEY", API_KEY)
+
         compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
         targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
         minSdkVersion globalConfiguration["androidMinSdkVersion"]
@@ -41,13 +44,17 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     def applicationDependencies = rootProject.ext.applicationDependencies
     def androidTestDependencies = rootProject.ext.androidTestDependencies
     def testDependencies = rootProject.ext.testDependencies
+    def annotationProcessors = rootProject.ext.annotationProcessors
 
     implementation applicationDependencies
 
     androidTestImplementation androidTestDependencies
 
     testImplementation testDependencies
+
+    annotationProcessor annotationProcessors
 }
