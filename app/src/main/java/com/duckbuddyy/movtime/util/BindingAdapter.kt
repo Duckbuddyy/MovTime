@@ -4,6 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.duckbuddyy.movtime.R
 import com.duckbuddyy.movtime.repository.MovieApi
 
 
@@ -15,13 +16,15 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
     }
 }
 
-@BindingAdapter(value = ["imageUrl"])
-fun loadImage(view: ImageView, url: String) {
-    Glide.with(view).load("${MovieApi.BASE_IMG_URL}$url").into(view)
+@BindingAdapter("imageSrc")
+fun ImageView.loadImage(url: String?) {
+    if (url != null) {
+        Glide.with(this)
+            .load("${MovieApi.BASE_IMG_URL}$url")
+            .error(R.drawable.image_not_found)
+            .into(this)
+    }
+    else{
+        //TODO Glide Loading
+    }
 }
-
-//TODO loadImage'e error eklenecek
-//@BindingAdapter("imageUrl", "error")
-//fun loadImage(view: ImageView, url: String, error: Drawable) {
-//    Picasso.get().load(url).error(error).into(view)
-//}

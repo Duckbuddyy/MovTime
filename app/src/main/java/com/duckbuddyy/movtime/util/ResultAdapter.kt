@@ -15,10 +15,9 @@ import com.duckbuddyy.movtime.view.HomeFragmentDirections
 
 
 class ResultAdapter() :
-    PagingDataAdapter<Result, ResultAdapter.ResultViewHolder>(MOVIE_COMPARATOR) {
+    PagingDataAdapter<Result, ResultAdapter.ResultViewHolder>(MOVIE_COMPARATOR),
+    ResultItemClickListener {
 
-    inner class ResultViewHolder(val cardMovieBinding: ItemResultBinding) :
-        RecyclerView.ViewHolder(cardMovieBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -34,14 +33,11 @@ class ResultAdapter() :
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
         holder.cardMovieBinding.movie = getItem(position)
-//        holder.cardMovieBinding.viewmodel = homeViewModel
+        holder.cardMovieBinding.resultItemClick = this
     }
 
-    fun goDetails(view: View) {
-        val action =
-            HomeFragmentDirections.actionHomeFragmentToDetailFragment(60735)
-        Navigation.findNavController(view).navigate(action)
-    }
+    inner class ResultViewHolder(val cardMovieBinding: ItemResultBinding) :
+        RecyclerView.ViewHolder(cardMovieBinding.root)
 
     companion object {
         private val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
@@ -52,6 +48,12 @@ class ResultAdapter() :
                 oldItem == newItem
 
         }
+    }
+
+    override fun onResultItemClicked(view: View, result: Result) {
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToDetailFragment(result.id)
+        Navigation.findNavController(view).navigate(action)
     }
 
 }
