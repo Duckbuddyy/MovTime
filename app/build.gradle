@@ -45,8 +45,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def applicationDependencies = rootProject.ext.applicationDependencies
     def androidTestDependencies = rootProject.ext.androidTestDependencies
     def testDependencies = rootProject.ext.testDependencies

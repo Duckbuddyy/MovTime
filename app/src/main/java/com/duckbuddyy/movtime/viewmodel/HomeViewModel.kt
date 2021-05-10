@@ -1,33 +1,32 @@
 package com.duckbuddyy.movtime.viewmodel
 
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import com.duckbuddyy.movtime.model.popular.Popular
-import com.duckbuddyy.movtime.repository.MovieRepository
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.duckbuddyy.movtime.model.popular.Result
+import com.duckbuddyy.movtime.repository.MoviePagingSource
 import com.duckbuddyy.movtime.view.HomeFragmentDirections
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 
-class HomeViewModel(private val movieRepository: MovieRepository) : ViewModel() {
-    private val _popularShows = MutableLiveData<Popular>()
-    val popularShows: LiveData<Popular> = _popularShows
+class HomeViewModel(private val moviePagingSource: MoviePagingSource) : ViewModel() {
 
     init {
-        getPopular()
+        getListData()
     }
 
-    @JvmOverloads
-    fun getPopular(page: Int = 1) = viewModelScope.launch(Dispatchers.Main) {
-        _popularShows.value = movieRepository.getPopular(page)
+    fun getListData(): Flow<PagingData<Result>> {
+        return Pager(
+            config = PagingConfig(pageSize = 34, maxSize = 200),
+            pagingSourceFactory = { moviePagingSource }
+        ).flow.cachedIn(viewModelScope)
     }
 
-    fun goAnotherPage(view: View) {
+    fun goDetails(view: View) {
         val action =
             HomeFragmentDirections.actionHomeFragmentToDetailFragment(60735)
         Navigation.findNavController(view).navigate(action)

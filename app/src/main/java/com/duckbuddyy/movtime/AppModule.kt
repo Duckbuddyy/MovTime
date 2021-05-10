@@ -1,6 +1,7 @@
 package com.duckbuddyy.movtime
 
 import com.duckbuddyy.movtime.repository.MovieApi
+import com.duckbuddyy.movtime.repository.MoviePagingSource
 import com.duckbuddyy.movtime.repository.MovieRepository
 import com.duckbuddyy.movtime.viewmodel.DetailViewModel
 import com.duckbuddyy.movtime.viewmodel.HomeViewModel
@@ -18,6 +19,8 @@ val appModule = module {
     }
 
     single { MovieRepository(get()) }
+
+    single { MoviePagingSource(get()) }
 
     viewModel { HomeViewModel(get()) }
     viewModel { DetailViewModel(get(), get()) }

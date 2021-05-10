@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="movie"
             type="com.duckbuddyy.movtime.model.popular.Result" />
@@ -23,8 +21,9 @@
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:contentDescription="Movie"
-                android:src="@color/black" />
+                android:contentDescription="@{movie.name}"
+                android:src="@color/black"
+                app:imageUrl="@{movie.poster_path}" />
 
             <TextView
                 android:layout_width="match_parent"

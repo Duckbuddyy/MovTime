@@ -1,15 +1,21 @@
 package com.duckbuddyy.movtime.util
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.duckbuddyy.movtime.R
 import com.duckbuddyy.movtime.databinding.ItemResultBinding
 import com.duckbuddyy.movtime.model.popular.Result
+import com.duckbuddyy.movtime.view.HomeFragmentDirections
 
-class ResultAdapter(private val movies: List<Result>) :
-    RecyclerView.Adapter<ResultAdapter.ResultViewHolder>() {
+
+class ResultAdapter() :
+    PagingDataAdapter<Result, ResultAdapter.ResultViewHolder>(MOVIE_COMPARATOR) {
 
     inner class ResultViewHolder(val cardMovieBinding: ItemResultBinding) :
         RecyclerView.ViewHolder(cardMovieBinding.root)
@@ -22,13 +28,30 @@ class ResultAdapter(private val movies: List<Result>) :
             parent,
             false
         )
+
         return ResultViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-        holder.cardMovieBinding.movie = movies[position]
+        holder.cardMovieBinding.movie = getItem(position)
+//        holder.cardMovieBinding.viewmodel = homeViewModel
     }
 
-    override fun getItemCount(): Int = movies.size
+    fun goDetails(view: View) {
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToDetailFragment(60735)
+        Navigation.findNavController(view).navigate(action)
+    }
+
+    companion object {
+        private val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
+            override fun areItemsTheSame(oldItem: Result, newItem: Result) =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: Result, newItem: Result) =
+                oldItem == newItem
+
+        }
+    }
 
 }
