@@ -20,6 +20,6 @@ val appModule = module {
     single { MovieRepository(get()) }
 
     viewModel { HomeViewModel(get()) }
-    viewModel { DetailViewModel(get()) }
+    viewModel { DetailViewModel(get(), get()) }
 
 }

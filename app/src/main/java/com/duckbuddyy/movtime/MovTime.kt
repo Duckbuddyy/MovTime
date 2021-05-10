@@ -14,3 +14,13 @@ class MovTime:Application() {
         }
     }
 }
+
+//@TODO LIST
+//Dimens eklenecek
+//Glide
+//Recycler view
+//Pagination
+//Favourites
+//Başa git butonu
+//Readmemd
+//internet olmadığında crash

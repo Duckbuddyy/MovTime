@@ -22,5 +22,9 @@
         android:id="@+id/detailFragment"
         android:name="com.duckbuddyy.movtime.view.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="tvId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

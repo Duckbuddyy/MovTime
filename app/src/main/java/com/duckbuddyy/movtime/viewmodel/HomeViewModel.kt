@@ -28,7 +28,8 @@ class HomeViewModel(private val movieRepository: MovieRepository) : ViewModel() 
     }
 
     fun goAnotherPage(view: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToDetailFragment(60735)
         Navigation.findNavController(view).navigate(action)
     }
 
