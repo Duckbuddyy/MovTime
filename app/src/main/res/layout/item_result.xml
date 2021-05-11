@@ -9,11 +9,16 @@
             type="com.duckbuddyy.movtime.model.popular.Result" />
 
         <variable
+            name="isFavourite"
+            type="Boolean" />
+
+        <variable
             name="resultItemClick"
             type="com.duckbuddyy.movtime.util.ResultItemClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="@{(view) ->  resultItemClick.onResultItemClicked(view,movie)}">
@@ -37,6 +42,18 @@
                 android:text="@{movie.name}"
                 android:textSize="21sp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{isFavourite ? @string/app_name : @string/app_name2}"
+                android:textSize="21sp" />
+
+
+            <Button
+                android:id="@+id/fav_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:onClick="@{(view) ->  resultItemClick.onResultItemClicked(view,movie)}" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

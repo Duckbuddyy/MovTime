@@ -14,7 +14,9 @@ import com.duckbuddyy.movtime.databinding.FragmentHomeBinding
 import com.duckbuddyy.movtime.util.ResultAdapter
 import com.duckbuddyy.movtime.viewmodel.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.java.KoinJavaComponent.get
 
 
 class HomeFragment : Fragment() {
@@ -35,7 +37,7 @@ class HomeFragment : Fragment() {
             val decoration =
                 DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
-            resultAdapter = ResultAdapter()
+            resultAdapter = get()
             adapter = resultAdapter
         }
         lifecycleScope.launchWhenCreated {

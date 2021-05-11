@@ -7,17 +7,16 @@ import org.koin.core.context.startKoin
 class MovTime:Application() {
     override fun onCreate() {
         super.onCreate()
-
         startKoin{
             androidContext(this@MovTime)
-            modules(appModule)
+            modules(appModule, dbModule)
         }
+
     }
 }
 
 //@TODO LIST
 //Dimens eklenecek
-//Recycler view
 //Favourites
 //Başa git butonu
 //Readmemd

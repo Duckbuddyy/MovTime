@@ -10,14 +10,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.duckbuddyy.movtime.R
 import com.duckbuddyy.movtime.databinding.ItemResultBinding
+import com.duckbuddyy.movtime.model.favourite.Favourite
+import com.duckbuddyy.movtime.model.favourite.FavouriteDao
 import com.duckbuddyy.movtime.model.popular.Result
 import com.duckbuddyy.movtime.view.HomeFragmentDirections
 
 
-class ResultAdapter() :
+class ResultAdapter(private val favouriteDao: FavouriteDao) :
     PagingDataAdapter<Result, ResultAdapter.ResultViewHolder>(MOVIE_COMPARATOR),
     ResultItemClickListener {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -32,7 +33,13 @@ class ResultAdapter() :
     }
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-        holder.cardMovieBinding.movie = getItem(position)
+        val result = getItem(position)!!
+        if (favouriteDao.isFavourite(result.id) == null) {
+            val favourite = Favourite(result.id, false)
+            favouriteDao.insert(favourite)
+        }
+        holder.cardMovieBinding.isFavourite = favouriteDao.isFavourite(result.id)
+        holder.cardMovieBinding.movie = result
         holder.cardMovieBinding.resultItemClick = this
     }
 
@@ -51,9 +58,17 @@ class ResultAdapter() :
     }
 
     override fun onResultItemClicked(view: View, result: Result) {
-        val action =
-            HomeFragmentDirections.actionHomeFragmentToDetailFragment(result.id)
-        Navigation.findNavController(view).navigate(action)
+        when (view.id) {
+            R.id.fav_button -> {
+                val currentFav = favouriteDao.isFavourite(result.id)!!
+                favouriteDao.updateFavourite(result.id, currentFav)
+            }
+            R.id.card_view -> {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(result.id)
+                Navigation.findNavController(view).navigate(action)
+            }
+        }
     }
 
 }

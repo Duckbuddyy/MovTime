@@ -1,8 +1,11 @@
 package com.duckbuddyy.movtime
 
+import androidx.room.Room
+import com.duckbuddyy.movtime.repository.AppDatabase
 import com.duckbuddyy.movtime.repository.MovieApi
 import com.duckbuddyy.movtime.repository.MoviePagingSource
 import com.duckbuddyy.movtime.repository.MovieRepository
+import com.duckbuddyy.movtime.util.ResultAdapter
 import com.duckbuddyy.movtime.viewmodel.DetailViewModel
 import com.duckbuddyy.movtime.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -19,10 +22,15 @@ val appModule = module {
     }
 
     single { MovieRepository(get()) }
-
     single { MoviePagingSource(get()) }
+    single { ResultAdapter(get()) }
 
     viewModel { HomeViewModel(get()) }
     viewModel { DetailViewModel(get(), get()) }
 
+}
+
+val dbModule = module {
+    single { Room.databaseBuilder(get(), AppDatabase::class.java, "AppDatabase.db").build() }
+    single { get<AppDatabase>().getDao() }
 }
