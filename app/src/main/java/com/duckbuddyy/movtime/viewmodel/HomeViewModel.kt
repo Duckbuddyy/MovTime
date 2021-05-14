@@ -8,17 +8,30 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.duckbuddyy.movtime.model.popular.Result
 import com.duckbuddyy.movtime.repository.MoviePagingSource
+import com.duckbuddyy.movtime.util.ResultAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class HomeViewModel(private val moviePagingSource: MoviePagingSource) : ViewModel() {
+
+class HomeViewModel(
+    private val moviePagingSource: MoviePagingSource,
+    val adapter: ResultAdapter
+) : ViewModel() {
 
     init {
-        getListData()
+        GlobalScope.launch(Dispatchers.Main) {
+            getListData().collectLatest {
+                adapter.submitData(it)
+            }
+        }
     }
 
-    fun getListData(): Flow<PagingData<Result>> {
+    private fun getListData(): Flow<PagingData<Result>> {
         return Pager(
-            config = PagingConfig(pageSize = 34, maxSize = 200),
+            config = PagingConfig(pageSize = 20, maxSize = 200),
             pagingSourceFactory = { moviePagingSource }
         ).flow.cachedIn(viewModelScope)
     }

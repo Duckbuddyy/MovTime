@@ -61,7 +61,7 @@ class ResultAdapter(private val favouriteDao: FavouriteDao) :
         when (view.id) {
             R.id.fav_button -> {
                 val currentFav = favouriteDao.isFavourite(result.id)!!
-                favouriteDao.updateFavourite(result.id, currentFav)
+                favouriteDao.updateFavourite(result.id, !currentFav)
             }
             R.id.card_view -> {
                 val action =

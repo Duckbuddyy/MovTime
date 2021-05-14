@@ -22,15 +22,25 @@ val appModule = module {
     }
 
     single { MovieRepository(get()) }
+
     single { MoviePagingSource(get()) }
+
     single { ResultAdapter(get()) }
 
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeViewModel(get(), get()) }
+
     viewModel { DetailViewModel(get(), get()) }
 
 }
 
 val dbModule = module {
-    single { Room.databaseBuilder(get(), AppDatabase::class.java, "AppDatabase.db").build() }
+
+    single {
+        Room.databaseBuilder(get(), AppDatabase::class.java, "AppDatabase.db")
+                //TODO delete allowmainthreadqueries
+            .allowMainThreadQueries()
+            .build()
+    }
+
     single { get<AppDatabase>().getDao() }
 }
