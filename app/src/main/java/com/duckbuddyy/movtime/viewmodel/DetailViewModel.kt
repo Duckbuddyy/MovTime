@@ -18,9 +18,7 @@ class DetailViewModel(private val movieRepository: MovieRepository, private val 
         getDetails()
     }
 
-    @JvmOverloads
-    fun getDetails(page: Int = 1) = viewModelScope.launch(Dispatchers.Main) {
+    private fun getDetails() = viewModelScope.launch(Dispatchers.Main) {
         _showDetails.value = movieRepository.getDetails(tvId)
-        println(showDetails)
     }
 }
