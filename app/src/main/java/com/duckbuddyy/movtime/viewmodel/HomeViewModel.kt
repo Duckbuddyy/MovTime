@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
 class HomeViewModel(
     private val moviePagingSource: MoviePagingSource,
     val adapter: ResultAdapter

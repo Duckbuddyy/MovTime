@@ -11,7 +11,6 @@ import com.duckbuddyy.movtime.databinding.FragmentHomeBinding
 import com.duckbuddyy.movtime.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModel()
 
