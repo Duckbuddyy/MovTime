@@ -20,10 +20,10 @@ class HomeFragment : Fragment() {
     ): View {
         val binding: FragmentHomeBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-
         binding.viewmodel = homeViewModel
         binding.lifecycleOwner = this
         return binding.root
     }
+
 
 }

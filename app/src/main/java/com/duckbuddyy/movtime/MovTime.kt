@@ -15,8 +15,3 @@ class MovTime:Application() {
         }
     }
 }
-
-//@TODO LIST
-//Dimens eklenecek
-//Başa git butonu
-//internet olmadığında crash

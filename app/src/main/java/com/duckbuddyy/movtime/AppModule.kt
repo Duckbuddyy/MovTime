@@ -38,7 +38,6 @@ val dbModule = module {
 
     single {
         Room.databaseBuilder(get(), AppDatabase::class.java, "AppDatabase.db")
-            //TODO delete allowmainthreadqueries
             .allowMainThreadQueries()
             .build()
     }
