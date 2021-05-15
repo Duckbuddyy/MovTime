@@ -5,23 +5,15 @@
     <data>
 
         <variable
-            name="movie"
-            type="com.duckbuddyy.movtime.model.popular.Result" />
-
-        <variable
-            name="isFavourite"
-            type="Boolean" />
-
-        <variable
-            name="resultItemClick"
-            type="com.duckbuddyy.movtime.util.ResultItemClickListener" />
+            name="viewmodel"
+            type="com.duckbuddyy.movtime.viewmodel.ItemViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="@{(view) ->  resultItemClick.onResultItemClicked(view,movie)}">
+        android:onClick="@{(view)->viewmodel.goDetails(view)}">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -32,20 +24,20 @@
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:contentDescription="@{movie.name}"
+                android:contentDescription="@{viewmodel.result.name}"
                 android:src="@color/black"
-                app:imageSrc="@{movie.poster_path}" />
+                app:imageSrc="@{viewmodel.result.poster_path}" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{movie.name}"
+                android:text="@{viewmodel.result.name}"
                 android:textSize="21sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{isFavourite ? @string/app_name : @string/app_name2}"
+                android:text="@{viewmodel.isFavourite ? @string/app_name : @string/app_name2}"
                 android:textSize="21sp" />
 
 
@@ -53,8 +45,9 @@
                 android:id="@+id/fav_button"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:onClick="@{(view) ->  resultItemClick.onResultItemClicked(view,movie)}" />
+                android:onClick="@{()->viewmodel.favourite()}"/>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 </layout>

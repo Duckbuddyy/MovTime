@@ -12,6 +12,7 @@ This projects views Tv Shows data with *Themoviedb API*
 - ⚡ Paging
 - ⚡ Navigation
 - ⚡ Glide
+- ⚡ Room
 <br />
 
 ## Architecture

@@ -11,7 +11,6 @@ import com.duckbuddyy.movtime.databinding.FragmentHomeBinding
 import com.duckbuddyy.movtime.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModel()
 
@@ -21,10 +20,10 @@ class HomeFragment : Fragment() {
     ): View {
         val binding: FragmentHomeBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-
         binding.viewmodel = homeViewModel
         binding.lifecycleOwner = this
         return binding.root
     }
+
 
 }

@@ -17,6 +17,7 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
             val decoration =
                 DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
+
         this.setHasFixedSize(true)
         this.adapter = adapter
     }
@@ -31,6 +32,5 @@ fun ImageView.loadImage(url: String?) {
             .into(this)
     }
     else{
-        //TODO Glide Loading
     }
 }
