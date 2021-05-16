@@ -4,4 +4,5 @@
     <string name="app_name">MovTime</string>
     <string name="app_name2">MovTime2</string>
     <string name="iv_like">Like Button</string>
+    <string name="iv_backdrop">Backdrop Image</string>
 </resources>

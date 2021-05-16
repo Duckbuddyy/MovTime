@@ -28,6 +28,8 @@
             android:contentDescription="@string/fab_scroll_top"
             android:onClick="@{(view)->viewmodel.scrollTop(view, recyclerViewHome)}"
             android:src="@drawable/ic_up"
+            app:backgroundTint="@color/secondaryVariant"
+            app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

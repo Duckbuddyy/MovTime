@@ -1,12 +1,13 @@
 package com.duckbuddyy.movtime.util
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.duckbuddyy.movtime.R
+import com.duckbuddyy.movtime.model.details.Genre
 import com.duckbuddyy.movtime.repository.MovieApi
 
 
@@ -29,5 +30,21 @@ fun ImageView.loadImage(url: String?) {
             .into(this)
     } else {
         //TODO add loading
+    }
+}
+
+@BindingAdapter("arraySrc")
+fun TextView.loadText(array: List<Genre>?) {
+    if(array!= null) {
+        val builder = StringBuilder()
+        for (element in array) {
+            builder.append(element.name)
+            builder.append("\n")
+        }
+        builder.trim()
+        this.text = builder.toString()
+    }
+    else{
+        //Todo add loading
     }
 }

@@ -24,9 +24,10 @@ class MovieRepository(private val movieApi: MovieApi) {
             val details = movieApi.getDetails(tvId)
             details
         } catch (e: Exception) {
-            Log.d("ApiError", "getPopular encountered an error: $e")
+            Log.d("ApiError", "getDetails($tvId) encountered an error: $e")
             throw IOException()
         }
     }
 
 }
+
