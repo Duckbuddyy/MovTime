@@ -11,8 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/home_bg_gradient">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_home"
@@ -26,8 +25,9 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/fab_scroll_top"
             android:onClick="@{(view)->viewmodel.scrollTop(view, recyclerViewHome)}"
+            android:src="@drawable/ic_up"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

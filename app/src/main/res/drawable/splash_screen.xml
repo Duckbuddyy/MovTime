@@ -1,7 +1,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:drawable="@color/baby_powder" />
+    <item android:drawable="@color/primary" />
 
     <item
         android:drawable="@drawable/ic_launcher_fg"

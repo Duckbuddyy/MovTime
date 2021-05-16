@@ -37,7 +37,7 @@ class HomeViewModel(
         ).flow.cachedIn(viewModelScope)
     }
 
-    fun scrollTop(view: View,recyclerView: RecyclerView){
+    fun scrollTop(view: View, recyclerView: RecyclerView) {
         recyclerView.smoothScrollToPosition(0)
         println("Ananın amı fenerbahce")
     }

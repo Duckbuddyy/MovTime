@@ -9,7 +9,7 @@ import java.io.IOException
 
 class MovieRepository(private val movieApi: MovieApi) {
 
-    suspend fun getPopular(page:Int = 1): Popular = withContext(Dispatchers.IO) {
+    suspend fun getPopular(page: Int = 1): Popular = withContext(Dispatchers.IO) {
         try {
             val popular = movieApi.getPopular(page)
             popular
@@ -19,7 +19,7 @@ class MovieRepository(private val movieApi: MovieApi) {
         }
     }
 
-    suspend fun getDetails(tvId:Int): Details = withContext(Dispatchers.IO) {
+    suspend fun getDetails(tvId: Int): Details = withContext(Dispatchers.IO) {
         try {
             val details = movieApi.getDetails(tvId)
             details

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_icon">Application Icon</string>
+    <string name="fab_scroll_top">Scroll Top</string>
     <string name="app_name">MovTime</string>
     <string name="app_name2">MovTime2</string>
+    <string name="iv_like">Like Button</string>
 </resources>
