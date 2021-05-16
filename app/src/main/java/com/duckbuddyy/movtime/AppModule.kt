@@ -1,6 +1,5 @@
 package com.duckbuddyy.movtime
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.room.Room
 import com.duckbuddyy.movtime.repository.AppDatabase
 import com.duckbuddyy.movtime.repository.MovieApi

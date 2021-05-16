@@ -4,7 +4,6 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
-import com.duckbuddyy.movtime.model.favourite.Favourite
 import com.duckbuddyy.movtime.model.favourite.FavouriteDao
 import com.duckbuddyy.movtime.model.popular.Result
 import com.duckbuddyy.movtime.view.HomeFragmentDirections
